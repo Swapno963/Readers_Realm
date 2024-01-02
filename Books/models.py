@@ -5,7 +5,7 @@ from Category.models import Category
 class Books(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    img = models.ImageField()
+    img = models.ImageField(upload_to='posts/media/uploads/', blank = True, null = True)    
     borrow_price = models.IntegerField()
     book_borrower = models.ForeignKey(Reader, related_name='book_borrower', on_delete=models.CASCADE, null=True, blank=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE, null=True, blank=True)

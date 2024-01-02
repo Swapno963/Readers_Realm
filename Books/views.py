@@ -16,7 +16,7 @@ def show_all_books(request, category_slug=None):
     book_list = Books.objects.all()
     categori_list = Category.objects.all()
     if category_slug:
-        category_type = Category.objects.filter(slug=category_slug)
+        category_type = Category.objects.filter(slug=category_slug).first()
         if category_type:
             book_list = Books.objects.filter(category = category_type)
     return render(request,'book_list.html',{'book_list':book_list, 'category_list':categori_list}) 
@@ -38,8 +38,6 @@ class ShowDetailBook(DetailView):
         comment_form = CommentForm()
 
         context['comments'] = comments
-        # print(book_list)
-        # print(book_list.title)
         context['books_comment'] = book_list.title
         context['comment_form'] = comment_form
         return context
