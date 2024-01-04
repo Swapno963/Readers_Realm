@@ -1,19 +1,30 @@
-from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy, reverse
+from .models import Reader
 
 class RegistrationForm(UserCreationForm):
+    balance = forms.IntegerField()
     class Meta:
         model = User
-        fields = ['username','first_name','last_name','email']
+        fields = ['username','password1','password2','first_name','last_name','email','balance']
 
     def save(self, commit =True):
         our_user = super().save(commit=True)
+        our_user.save()
+
+        balance = self.cleaned_data.get('balance')
+        Reader.objects.create(
+            user = our_user,
+            balance = balance,
+          
+        )
+
         return our_user
     
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         for field in self.fields:
@@ -25,3 +36,12 @@ class RegistrationForm(UserCreationForm):
                     'focus:bg-white focus:border-gray-500'
                 )
             })
+
+class UwerLogin(LoginView):
+    template_name = 'login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
+
+class AddMoneyForm(forms.Form):
+    amount = forms.DecimalField(label='Enter Deposit Amount',initial=0)

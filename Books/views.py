@@ -22,8 +22,6 @@ def show_all_books(request, category_slug=None):
     return render(request,'book_list.html',{'book_list':book_list, 'category_list':categori_list}) 
 
 
-
-
 class ShowDetailBook(DetailView):
     model = Books
     template_name = 'detail.html'
@@ -54,3 +52,4 @@ class ShowDetailBook(DetailView):
 
 
         return self.get(request, *args, **kwargs)
+   

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="w-full m-4">
+        {% comment %} <h2 class="text-center">{{balance}}</h2> {% endcomment %}
+        {% comment %} <h2 class="text-center">{% balance %}</h2> {% endcomment %}
+        <form method="post">
+            {% csrf_token %}
+                {{form}}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock body %}

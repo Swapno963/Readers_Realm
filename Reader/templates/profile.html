@@ -1,6 +1,41 @@
 {% extends "base.html" %}
 {% load static %}
-{% block body %}
-    <h2>Hello, {{user}}</h2>
 
+{% block body %}
+<div class="max-w-2xl mx-auto mt-8 p-8 bg-white rounded-md shadow-md">
+    <h1 class="text-3xl font-bold mb-4">Your Balance: {{ user.balance }}</h1>
+    <h2 class="text-2xl font-semibold mb-4">Hello, {{ user }}</h2>
+
+    {% if borrow_history %}
+        <h2 class="text-2xl font-semibold mb-4">Borrow History ({{ borrow_history | length }})</h2>
+
+        <table class="min-w-full bg-white border border-gray-300 rounded-md overflow-hidden">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">User Name</th>
+                    <th class="py-2 px-4 border-b">Purchase Date</th>
+                    <th class="py-2 px-4 border-b">Book Title</th>
+                    <th class="py-2 px-4 border-b">Is Borrowed</th>
+                    <th class="py-2 px-4 border-b">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in borrow_history %}
+                    <tr>
+                        <td class="py-2 px-4 border-b">{{ entry.user }}</td>
+                        <td class="py-2 px-4 border-b">{{ entry.purchase_date }}</td>
+                        <td class="py-2 px-4 border-b">{{ entry.book.title }}</td>
+                        <td class="py-2 px-4 border-b">{{ entry.IsBorrowed }}</td>
+                        <td class="py-2 px-4 border-b">
+                            <a href="{% url 'ReturnBook' entry.id %}" class="text-blue-500 hover:underline">Return Book</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p class="text-gray-500">No borrow history available.</p>
+    {% endif %}
+</div>
 {% endblock body %}

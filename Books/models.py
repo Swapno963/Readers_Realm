@@ -1,5 +1,4 @@
 from django.db import models
-from Reader.models import Reader
 from Category.models import Category
 # Create your models here.
 class Books(models.Model):
@@ -7,7 +6,7 @@ class Books(models.Model):
     description = models.TextField()
     img = models.ImageField(upload_to='posts/media/uploads/', blank = True, null = True)    
     borrow_price = models.IntegerField()
-    book_borrower = models.ForeignKey(Reader, related_name='book_borrower', on_delete=models.CASCADE, null=True, blank=True)
+    book_borrower = ''
     category = models.ForeignKey(Category,on_delete=models.CASCADE, null=True, blank=True)
     
 

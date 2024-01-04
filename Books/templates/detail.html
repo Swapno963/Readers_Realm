@@ -2,11 +2,12 @@
 {% load static %}
 {% block body %}
 {% comment %} show books {% endcomment %}
-<div class="min-h-screen bg-gray-400 flex items-center justify-center">
+<div class=" py-4 bg-gray-400 flex items-center justify-center">
   <div class="text-center">
-    <div class="p-6 bg-white shadow-md rounded-lg">
-      <img class="w-40 h-40 mx-auto mb-4" src="{{ object.image.url }}" alt="{{ object.title }}">
+    <div class="p-2 bg-white shadow-md rounded-lg">
+      <img class="w-40 h-40 mx-auto mb-4" src="{{ object.img.url }}" alt="{{ object.title }}">
       <h3 class="text-lg font-semibold">{{ object.title }}</h3>
+      <p class="text-lg font-semibold">{{ object.title }}</p>
     </div>
   </div>
 </div>
