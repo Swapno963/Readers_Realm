@@ -29,7 +29,7 @@ SECRET_KEY =  env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://front.bluemix.net']
+CSRF_TRUSTED_ORIGINS = ['https://readers-realm.onrender.com']
 
 
 # Application definition
