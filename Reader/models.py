@@ -5,7 +5,7 @@ from Books.models import Books
 class Reader(models.Model):
     user = models.OneToOneField(User, related_name='reader', on_delete=models.CASCADE)
     balance = models.DecimalField(default=0, max_digits=12, decimal_places=2) # ekjon user 12 digit obdi taka rakhte parbe, dui doshomik ghor obdi rakhte parben 1000.50
-
+    email =models.EmailField(null=True, blank=True)
     def __str__(self) -> str:
         return f"{self.user.username}"
 

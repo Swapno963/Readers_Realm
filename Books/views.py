@@ -5,8 +5,9 @@ from django.views.generic import DetailView
 
 from .models import Books
 from .forms import CommentForm
+from Reader.models import Borrow_model
 
-
+from django.shortcuts import get_object_or_404, redirect
 
 
 
@@ -28,12 +29,28 @@ class ShowDetailBook(DetailView):
     context_object_name = 'Books'
     pk_url_kwarg = 'id'
 
+    # def get(self,request,id,*args, **kwargs):
+    #     print('print from books :', id)
+    #     return self.get(request,id, *args, **kwargs)
+
 
     def get_context_data(self, **kwargs):
+        
         context = super().get_context_data(**kwargs)
         book_list = self.get_object()
         comments = book_list.comments.all()
+        # searching in borrow model
+        # borrow = Borrow_model.objects.get(user=request.user)
         comment_form = CommentForm()
+
+
+        # trying to get user data
+        # context['comments'] = comments
+
+        loggedin_user = self.request.user # got currently login user
+
+
+
 
         context['comments'] = comments
         context['books_comment'] = book_list.title
@@ -42,6 +59,7 @@ class ShowDetailBook(DetailView):
     
 
     def post(self,request, *args, **kwargs):
+        print('book post: ',request)
         comment_form = CommentForm(data=self.request.POST)
         book = self.get_object()
         if comment_form.is_valid():
@@ -51,5 +69,5 @@ class ShowDetailBook(DetailView):
             new_comment.save()
 
 
-        return self.get(request, *args, **kwargs)
+        return self.get(request,id, *args, **kwargs)
    

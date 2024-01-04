@@ -12,7 +12,11 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from .models import Reader,Borrow_model
 from django.views import View
-from Books.models import Books
+from Books.models import Books, CommentModel
+from Books.forms import CommentForm
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
 
 
@@ -36,7 +40,6 @@ class UserLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('profile')
 
-
 class UserLogoutView(LogoutView):
     def get_success_url(self):
         if self.request.user.is_authenticated:
@@ -49,21 +52,35 @@ def show_profile(request):
     borrow_history = Borrow_model.objects.filter(user=user)
     return render(request,'profile.html',{'user':user,'borrow_history':borrow_history})
 
-
 @login_required
 def add_money(request):
     form = AddMoneyForm(request.POST)
+    # print('from add money : ',request.user)
+
     if request.method == 'POST' and form.is_valid():
         amount = form.cleaned_data['amount']
         user_account = Reader.objects.get(user=request.user)
-        # print(amount, user_account)
+        print(amount, user_account.email)
+
+
+
+        # sending email
+        message =f'Deposit done, amount {amount}'
+        send_email = EmailMultiAlternatives('Deposit','',to=[user_account.email])
+        send_email.attach_alternative(message, 'text/html')
+        send_email.send()
+
+
+
+
+
+
         user_account.balance += amount
         user_account.save()
         #
         balance = user_account.balance
     
     return render(request,'add_money.html',{'form':form})
-
 
 
 class BorrowBookView(View):
@@ -83,10 +100,11 @@ class BorrowBookView(View):
                 book=book,
                 IsBorrowed = True,
                   )
+            message =f'Borrow Book done, Book price {book.borrow_price} is taken from you balance'
+            send_email = EmailMultiAlternatives('Borrow','',to=[reader.email])
+            send_email.attach_alternative(message, 'text/html')
+            send_email.send()
         return redirect("profile")
-
-
-
 
 class ReturnBook(View):
     def get(self, request, id):
@@ -119,20 +137,9 @@ class ReturnBook(View):
 
         except:
             print("holo nah")
-
-        # if borrow.IsBorrowed == True:
-        #     user.balance += book.borrow_price
-        #     user.save()
-        #     borrow.IsBorrowed = False
-        #     borrow.save()
-        # user_account = request.user
-
-
-        # if IsBorrowed == True:
-        #     reader.balance += book.borrow_price
-        # reader.save()
-        # book.save()
-        # Borrow_model.objects.create(
-        #     IsBorrowed = False
-        # )
         return redirect("profile")
+
+
+def add_comment(request,id):
+    # form = CommentForm()
+    return redirect(request, 'add_comment.html')

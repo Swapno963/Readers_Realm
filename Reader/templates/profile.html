@@ -17,6 +17,7 @@
                     <th class="py-2 px-4 border-b">Book Title</th>
                     <th class="py-2 px-4 border-b">Is Borrowed</th>
                     <th class="py-2 px-4 border-b">Actions</th>
+                    <th class="py-2 px-4 border-b">Comment</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +30,12 @@
                         <td class="py-2 px-4 border-b">
                             <a href="{% url 'ReturnBook' entry.id %}" class="text-blue-500 hover:underline">Return Book</a>
                         </td>
+                        <td class="py-2 px-4 border-b">
+                            <a href="{% url 'add_comment' entry.book.id %}" class="text-blue-500 hover:underline">Add Commnet</a>
+                        </td>
+                        
                     </tr>
+                    
                 {% endfor %}
             </tbody>
         </table>
