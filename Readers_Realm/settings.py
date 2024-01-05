@@ -29,7 +29,7 @@ SECRET_KEY =  env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://readers-realm.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://readers-realm.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'Readers_Realm.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgres://mamar_bank_aqby_user:c7L6lF3int50bA9RBxdTrKtHxrA1wkBg@dpg-cmbhsuq1hbls73bmelrg-a.oregon-postgres.render.com/mamar_bank_aqby',
+        default='postgres://reader_realm_user:gH8IYsgJbGNo4eY2llO82lT0hJaZ3hkm@dpg-cmbu25ed3nmc73emqsjg-a.oregon-postgres.render.com/reader_realm',
        
     )
 }
