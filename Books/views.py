@@ -9,7 +9,10 @@ from Reader.models import Borrow_model
 
 from django.shortcuts import get_object_or_404, redirect
 
-
+from django.utils.encoding import force_str
+from django.contrib.auth.models import AnonymousUser
+from Reader.models import Reader,Borrow_model
+# from .models import 
 
 
 
@@ -39,18 +42,7 @@ class ShowDetailBook(DetailView):
         context = super().get_context_data(**kwargs)
         book_list = self.get_object()
         comments = book_list.comments.all()
-        # searching in borrow model
-        # borrow = Borrow_model.objects.get(user=request.user)
         comment_form = CommentForm()
-
-
-        # trying to get user data
-        # context['comments'] = comments
-
-        loggedin_user = self.request.user # got currently login user
-
-
-
 
         context['comments'] = comments
         context['books_comment'] = book_list.title
