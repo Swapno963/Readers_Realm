@@ -22,10 +22,10 @@ from core.views import HomeView
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
+    path('', HomeView.as_view(), name ='home'),
     path('admin/', admin.site.urls),
     path('reader/', include('Reader.urls')),
     path('books/', include('Books.urls')),
-    path('', HomeView.as_view(), name ='home'),
 ]
 
 
