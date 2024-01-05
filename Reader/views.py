@@ -124,6 +124,7 @@ class ReturnBook(View):
                 borrow.IsBorrowed = False
 
                 borrow.save()
+                borrow.user.save()
             else:
                 print("Vai, Ty sudu sudu chapcish kno,Aita False e to aace")
 
