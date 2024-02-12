@@ -4,11 +4,11 @@ Welcome to the Library Management System project! This system allows users to ex
 
 ## Requirements
 
-### Books (Marks - 30)
+### Books 
 - Every book has a title, description, image, borrowing price, and user reviews.
 - There are categories for users to filter books based on different genres.
 
-### User (Marks - 40)
+### User 
 - Users can create an account.
 - Login, logout, borrow, and return books.
 - Users can deposit money into their account, receiving an email upon successful completion.
@@ -17,10 +17,14 @@ Welcome to the Library Management System project! This system allows users to ex
 - After borrowing a book, users can review it.
 - When returning books, the borrowed amount will be refunded to the user.
 
-### Deploy (Marks - 10)
+### Deploy 
 - The project must be deployed on Render or your preferred platform.
 
 ## Getting Started
+## Upcoming Features
+1. after 7 days user will log out and ask to login again
+2. User can search on book title and description
+3. In one page 6 book will be shown and to see more book there will be pagenation option
 
 1. Clone the repository:
 

@@ -1,10 +1,10 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import FormView
 # Create your views here.
-
+from django import forms
 from django.shortcuts import get_object_or_404, redirect
 
-from .forms import RegistrationForm,AddMoneyForm
+from .forms import RegistrationForm,AddMoneyForm,ChangeUserForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout
 
@@ -17,6 +17,9 @@ from Books.forms import CommentForm
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -54,6 +57,7 @@ def show_profile(request):
 
 @login_required
 def add_money(request):
+    
     form = AddMoneyForm(request.POST)
     # print('from add money : ',request.user)
 
@@ -69,18 +73,12 @@ def add_money(request):
         send_email = EmailMultiAlternatives('Deposit','',to=[user_account.email])
         send_email.attach_alternative(message, 'text/html')
         send_email.send()
-
-
-
-
-
-
         user_account.balance += amount
         user_account.save()
         #
         balance = user_account.balance
-    
-    return render(request,'add_money.html',{'form':form})
+    user = request.user.reader
+    return render(request,'add_money.html',{'form':form,'user':user})
 
 
 class BorrowBookView(View):
@@ -108,13 +106,7 @@ class BorrowBookView(View):
 
 class ReturnBook(View):
     def get(self, request, id):
-        # print('request:', request,'id:',id)
-        # book = get_object_or_404(Books,id=id)
-        # user = get_object_or_404(Reader,user=request.user)
         borrow = get_object_or_404(Borrow_model,id=id)
-        # reader = Reader.objects.get(user = request.user)
-        # print("book :",book.borrow_price)
-        # print("user :",user.balance)
         try:
             print("Borrow price :",borrow.book.borrow_price)
             print("Is Borrow :",borrow.IsBorrowed)
@@ -127,15 +119,6 @@ class ReturnBook(View):
                 borrow.user.save()
             else:
                 print("Vai, Ty sudu sudu chapcish kno,Aita False e to aace")
-
-
-            # print("_")
-            # print("_")
-            # print("_")
-            # print("After Borrow price :",borrow.book.borrow_price)
-            # print("Is Borrow :",borrow.IsBorrowed)
-            # print("User balance :",borrow.user.balance)
-
         except:
             print("holo nah")
         return redirect("profile")
@@ -144,3 +127,33 @@ class ReturnBook(View):
 def add_comment(request,id):
     # form = CommentForm()
     return redirect(request, 'add_comment.html')
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        profile_form = ChangeUserForm(request.POST, instance = request.user)
+        if profile_form.is_valid():
+            profile_form.save()
+            # messages.success(request, 'Profile Updated Successfully')
+            return redirect('profile')
+    
+    else:
+        profile_form = ChangeUserForm(instance = request.user)
+        user = request.user.reader
+    return render(request, 'update_profile.html', {'form' : profile_form,'user':user})
+
+
+@login_required
+def pass_change(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            # messages.success(request, 'Password Updated Successfully')
+            update_session_auth_hash(request, form.user)
+            return redirect('profile')
+    
+    else:
+        form = PasswordChangeForm(user=request.user)
+    user = request.user.reader
+    return render(request, 'pass_change.html', {'form' : form,'user':user})

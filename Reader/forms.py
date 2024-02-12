@@ -4,12 +4,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy, reverse
 from .models import Reader
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class RegistrationForm(UserCreationForm):
     balance = forms.IntegerField()
     class Meta:
         model = User
-        fields = ['username','password1','password2','first_name','last_name','email','balance']
+        fields = ['username','first_name','last_name','email','balance','password1','password2']
 
     def save(self, commit =True):
         our_user = super().save(commit=True)
@@ -45,3 +46,9 @@ class UwerLogin(LoginView):
 
 class AddMoneyForm(forms.Form):
     amount = forms.DecimalField(label='Enter Deposit Amount',initial=0)
+    
+class ChangeUserForm(UserChangeForm):
+    password = None
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']

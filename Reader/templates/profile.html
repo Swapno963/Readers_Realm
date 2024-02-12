@@ -2,46 +2,68 @@
 {% load static %}
 
 {% block body %}
-<div class="max-w-2xl mx-auto mt-8 p-8 bg-white rounded-md shadow-md">
-    <h1 class="text-3xl font-bold mb-4">Your Balance: {{ user.balance }}</h1>
-    <h2 class="text-2xl font-semibold mb-4">Hello, {{ user }}</h2>
+<div class="max-w-2xl mx-auto my-12 py-12 px-8 bg-white rounded-md shadow-md">
+    <div>
+        <button
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+        >
+        <a href="
+        {% url "edit_profile" %}
+        
+        ">
+        Edit Your Profile
+    </a>
+        </button>
+        <button
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+        >
+        <a href="
+        {% url "password_change" %}
+        
+        ">
+        Change Profile Password
+    </a>
+        </button>
+    </div>
+    <h1 class="text-2xl font-bold mb-8 text-center">Hello, {{ user }}</h1>
+    <h2 class="text-3xl font-semibold mb-8 text-center">Your Balance: {{ user.balance }}</h2>
 
     {% if borrow_history %}
-        <h2 class="text-2xl font-semibold mb-4">Borrow History ({{ borrow_history | length }})</h2>
+        <h2 class="text-2xl font-semibold mb-8 text-center">Borrow History ({{ borrow_history | length }})</h2>
 
-        <table class="min-w-full bg-white border border-gray-300 rounded-md overflow-hidden">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 border-b">User Name</th>
-                    <th class="py-2 px-4 border-b">Purchase Date</th>
-                    <th class="py-2 px-4 border-b">Book Title</th>
-                    <th class="py-2 px-4 border-b">Is Borrowed</th>
-                    <th class="py-2 px-4 border-b">Actions</th>
-                    <th class="py-2 px-4 border-b">Comment</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for entry in borrow_history %}
-                    <tr>
-                        <td class="py-2 px-4 border-b">{{ entry.user }}</td>
-                        <td class="py-2 px-4 border-b">{{ entry.purchase_date }}</td>
-                        <td class="py-2 px-4 border-b">{{ entry.book.title }}</td>
-                        <td class="py-2 px-4 border-b">{{ entry.IsBorrowed }}</td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="{% url 'ReturnBook' entry.id %}" class="text-blue-500 hover:underline">Return Book</a>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="{% url 'add_comment' entry.book.id %}" class="text-blue-500 hover:underline">Add Commnet</a>
-                        </td>
-                        
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="px-4 py-2">User Name</th>
+                        <th class="px-4 py-2">Purchase Date</th>
+                        <th class="px-4 py-2">Book Title</th>
+                        <th class="px-4 py-2">Is Borrowed</th>
+                        <th class="px-4 py-2">Actions</th>
+                        <th class="px-4 py-2">Comment</th>
                     </tr>
-                    
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for entry in borrow_history %}
+                        <tr>
+                            <td class="px-4 py-2">{{ entry.user }}</td>
+                            <td class="px-4 py-2">{{ entry.purchase_date }}</td>
+                            <td class="px-4 py-2">{{ entry.book.title }}</td>
+                            <td class="px-4 py-2">{{ entry.IsBorrowed }}</td>
+                            <td class="px-4 py-2">
+                                <a href="{% url 'ReturnBook' entry.id %}" class="text-blue-500 hover:underline">Return Book</a>
+                            </td>
+                            <td class="px-4 py-2">
+                                <a href="{% url 'add_comment' entry.book.id %}" class="text-blue-500 hover:underline">Add Comment</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
     {% else %}
-        <p class="text-gray-500">No borrow history available.</p>
+        <p class="text-gray-500 text-center">No borrow history available.</p>
     {% endif %}
 </div>
 {% endblock body %}

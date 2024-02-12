@@ -17,13 +17,14 @@ from Reader.models import Reader,Borrow_model
 
 
 def show_all_books(request, category_slug=None):
+    user = request.user.reader
     book_list = Books.objects.all()
     categori_list = Category.objects.all()
     if category_slug:
         category_type = Category.objects.filter(slug=category_slug).first()
         if category_type:
             book_list = Books.objects.filter(category = category_type)
-    return render(request,'book_list.html',{'book_list':book_list, 'category_list':categori_list}) 
+    return render(request,'book_list.html',{'book_list':book_list, 'category_list':categori_list,'user':user}) 
 
 
 class ShowDetailBook(DetailView):
@@ -31,11 +32,6 @@ class ShowDetailBook(DetailView):
     template_name = 'detail.html'
     context_object_name = 'Books'
     pk_url_kwarg = 'id'
-
-    # def get(self,request,id,*args, **kwargs):
-    #     print('print from books :', id)
-    #     return self.get(request,id, *args, **kwargs)
-
 
     def get_context_data(self, **kwargs):
         

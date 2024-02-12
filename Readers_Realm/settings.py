@@ -41,12 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_tailwind',
     'Category',
     'core',
     'Reader',
     'Books',
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,37 +85,37 @@ WSGI_APPLICATION = 'Readers_Realm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # for postsql
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': env("DB_NAME"),
-#        'USER': env("DB_USER"),
-#        'PASSWORD': env("DB_PASSWORD"),
-#        'HOST': env("DB_HOST"),
-#        'PORT': env("DB_PORT"),
-#    }
-# }
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': env("DB_NAME"),
+       'USER': env("DB_USER"),
+       'PASSWORD': env("DB_PASSWORD"),
+       'HOST': env("DB_HOST"),
+       'PORT': env("DB_PORT"),
+   }
+}
 
 
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgres://reader_realm_user:gH8IYsgJbGNo4eY2llO82lT0hJaZ3hkm@dpg-cmbu25ed3nmc73emqsjg-a.oregon-postgres.render.com/reader_realm',
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Feel free to alter this value to suit your needs.
+#         default='postgres://reader_realm_user:gH8IYsgJbGNo4eY2llO82lT0hJaZ3hkm@dpg-cmbu25ed3nmc73emqsjg-a.oregon-postgres.render.com/reader_realm',
        
-    )
-}
+#     )
+# }
 
 
 
@@ -160,7 +164,7 @@ STATIC_URL = 'static/'
 # STATICFILES_DIRS = [
 #     BASE_DIR / 'static'
 # ]
-
+LOGIN_URL = '/reader/login/'
 
 MEDIA_URL = '/media/'
 # Default primary key field type
