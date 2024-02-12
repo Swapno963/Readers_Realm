@@ -125,8 +125,8 @@ class ReturnBook(View):
 
 
 def add_comment(request,id):
-    # form = CommentForm()
-    return redirect(request, 'add_comment.html')
+    form = CommentForm(request.POST)
+    return render(request, 'add_comment.html', {'form':form})
 
 @login_required
 def edit_profile(request):

@@ -3,7 +3,7 @@
 
 {% block body %}
     <div class="max-w-md mx-auto mt-8 bg-white p-8 rounded-md shadow-md">
-        <h2 class="text-2xl font-semibold mb-4">Change Your Password</h2>
+        <h2 class="text-2xl font-semibold mb-4">Login Hear</h2>
 
         {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
@@ -24,6 +24,8 @@
             >
               Submit
             </button>
+            <p>Dont't have Account ?</p>
+            <a class='text-green-800 text-bold' href="{% url 'register' %}">Register</a>
           </form>
     </div>
 {% endblock body %}

@@ -3,9 +3,9 @@
 
 {% block body %}
 <div class="max-w-2xl mx-auto my-12 py-12 px-8 bg-white rounded-md shadow-md">
-    <div>
+    <div class='mb-12 '>
         <button
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+        class="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
         >
         <a href="
         {% url "edit_profile" %}
@@ -15,7 +15,7 @@
     </a>
         </button>
         <button
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+        class="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
         >
         <a href="
         {% url "password_change" %}
@@ -39,6 +39,7 @@
                         <th class="px-4 py-2">Purchase Date</th>
                         <th class="px-4 py-2">Book Title</th>
                         <th class="px-4 py-2">Is Borrowed</th>
+                        <th class="px-4 py-2">Price</th>
                         <th class="px-4 py-2">Actions</th>
                         <th class="px-4 py-2">Comment</th>
                     </tr>
@@ -50,11 +51,18 @@
                             <td class="px-4 py-2">{{ entry.purchase_date }}</td>
                             <td class="px-4 py-2">{{ entry.book.title }}</td>
                             <td class="px-4 py-2">{{ entry.IsBorrowed }}</td>
+                            <td class="px-4 py-2">{{ entry.book.borrow_price }}</td>
+                            {%if entry.IsBorrowed%}
                             <td class="px-4 py-2">
                                 <a href="{% url 'ReturnBook' entry.id %}" class="text-blue-500 hover:underline">Return Book</a>
                             </td>
+
+                            {% endif %}
                             <td class="px-4 py-2">
-                                <a href="{% url 'add_comment' entry.book.id %}" class="text-blue-500 hover:underline">Add Comment</a>
+                                <a href="#" class="text-blue-500 hover:underline">Already Returned</a>
+                            </td>
+                            <td class="px-4 py-2">
+                                <a href="{% url 'book_detail' entry.book.id %}" class="text-blue-500 hover:underline">Add Comment</a>
                             </td>
                         </tr>
                     {% endfor %}

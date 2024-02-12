@@ -11,11 +11,11 @@ Readers' Realm is a Python-based library management system that empowers users t
 * **Review System:** Share your opinion on borrowed books using a robust review system.
 * **Loan History Tracking:** Monitor your borrowing activity and manage loan return dates.
 * **Flexible Deployment:** Deploy on Render or your preferred platform.
+* **Authientication:**  logout a user in case of downtime 5 min and not allow working within one session for more than half an hour.
 
 ## Upcoming Features
-* **after 7 days user will log out and ask to login again
 * **User can search on book title and description
-* **In one page 6 book will be shown and to see more book there will be pagenation option
+* **In one page 6 book will be shown and to see more book there will be pagenation option done 
 
 ## Contributions
 
@@ -37,4 +37,16 @@ Here are two options to get started with this project:
 
    ```bash
    git clone https://github.com/Swapno963/Readers_Realm.git
+
+2. **Migration and Migrate:**
+
+   ```bash
+   py manage.py makemigrations
+  
+   py manage.py migrate
+
+3. **Run the project:**
+
+   ```bash
+   py manage.py runserver
 

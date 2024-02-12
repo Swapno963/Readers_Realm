@@ -15,7 +15,9 @@
     />
   </head>
   <body class="bg-indigo-600">
-    {% include 'navbar.html' %} {% block body %} {% endblock %} 
-    {% include 'footer.html' %}
+    {% for message in messages %}
+    <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %} {{ redirect_to_login_immediately }} {% include 'navbar.html' %}
+    {% block body %} {% endblock %} {% include 'footer.html' %}
   </body>
 </html>
