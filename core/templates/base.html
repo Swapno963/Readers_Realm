@@ -14,10 +14,15 @@
       rel="stylesheet"
     />
   </head>
-  <body class="bg-indigo-600">
+  <body class="bg-indigo-200">
     {% for message in messages %}
     <div class="message {{ message.tags }}">{{ message }}</div>
-    {% endfor %} {{ redirect_to_login_immediately }} {% include 'navbar.html' %}
-    {% block body %} {% endblock %} {% include 'footer.html' %}
+    {% endfor %} {{ redirect_to_login_immediately }} 
+    {% include 'navbar.html' %}
+    <div>
+
+      {% block body %} {% endblock %} 
+    </div>
+    {% include 'footer.html' %}
   </body>
 </html>

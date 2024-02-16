@@ -3,36 +3,107 @@
 {% load crispy_forms_tags %}
 {% block body %}
 {% comment %} show books {% endcomment %}
-<div class=" py-4 bg-gray-400 flex items-center justify-center">
-  <div class="text-center">
+{% comment %} <div class=" py-4 bg-gray-400 flex items-center justify-center">
+  <div class="">
     <div class="p-2 bg-white shadow-md rounded-lg">
       <img class="w-40 h-40 mx-auto mb-4" src="{{ object.img.url }}" alt="{{ object.title }}">
       <h3 class="text-lg font-semibold">{{ object.title }}</h3>
-      <p class="text-lg font-semibold">{{ object.title }}</p>
+      <p class="text-lg font-semibold">{{ object.description }}</p>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+<div class='flex  justify-center  my-12'>
+  <div class='flex border-solid border-2 border-green-500 w-3/5  '>
+    <div class='border-solid border-2 border-sky-500 p-6 m-5'>
+      <img style='width:300px; height:300px' class=" mx-auto mb-4" src="{{ object.img.url }}" alt="{{ object.title }}">
+    </div>
+    <div class='pl-12 pt-12'>
+      <a href="#" class="mb-4 text-3xl font-semibold text-gray-800 hover:text-blue-500  leading-10">
+        <span class=' text-semibold text-gray-600 font-semibold'>Title  :</span> 
+        <span class='text-green-400'>
+          {{ object.title }}
+ 
+        </span> 
+       </a>
+       <p class="text-gray-600 mb-1 text-semibold text-2xl font-semibold">Author : {{ object.author  }}</p>
+       <p class="text-gray-600 mb-2 text-semibold text-2xl font-semibold">Price :  
+         <span class='text-red-300 font-bold text-2xl'>
+ 
+           $ {{ object.borrow_price }}
+         </span>
+ 
+       </p>
+       <p class="text-gray-600 mb-4 text-semibold text-xl font-semibold">Category : 
+         <span class='bg-yellow-200 rounded-2xl py-1 px-1'>
+ 
+           {{ object.category }}
+         </span>
+       </p>
+       <h3 class="text-2xl text-gray-600 font-semibold mb-4">We Have : {{ comments | length }} Comments</h3>
+       <div class='flex'>
+        <button class='bg-green-600 hover:bg-green-800 text-xl font-bold text-white rounded-2xl p-2 border-solid border-2 border-red-200 mr-3'>Read Some Page</button>
+        <button  class='bg-blue-600 hover:bg-blue-800 text-xl font-bold text-white rounded-2xl p-2 border-solid border-2 border-red-200 mx-3'>Add To Cart</button>
+       </div>
     </div>
   </div>
 </div>
 
-<div class="container mx-auto p-6 bg-gray-300">
-    <h3 class="text-2xl font-semibold mb-4">Comments : {{ comments | length }}</h3>
+<div class="container mx-auto p-6 bg-blue-100 rounded-xl">
+    <h3 class="text-2xl font-semibold mb-4 text-gray-600">Users Comments : {{ comments | length }}</h3>
     <div class="space-y-4">
         {% for comment in comments %}
-            <div class="bg-white p-4 rounded-md shadow-md">
-                <p class="text-lg font-semibold">{{ comment.name }}</p>
-                <p class="text-gray-600">{{ comment.body }}</p>
+            <div class="bg-white p-4 rounded-md shadow-md w-4/5">
+              <div class='flex'>
+                  <img class='rounded w-50 h-40' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
+                  <div class='pl-6'>
+                    <p class="text-xl font-bold text-gray-700 "><span>By :</span> {{ comment.name }} <span class='font-semibold'>, at : 24 Aug 2023</span></p>
+                    {% comment %} <p class="text-gray-600">{{ comment.body }}</p> {% endcomment %}
+                    <p class='text-green-400 font-semibold py-3'>Verified Purchase</p>
+                    <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque delectus, magni voluptatum minus velit culpa assumenda accusantium, repellat nihil saepe quasi, blanditiis distinctio asperiores. Vero ratione quae quis pariatur vitae.</p>
+                    <p class='font-semibold text-gray-700 py-4'>Was this helpfull to your ? <span>
+                      <button class='font-semibold text-white bg-green-300 hover:bg-green-400 rounded-md p-1 mx-2'>Yes</button>
+                      <button class='font-semibold text-white bg-red-300 hover:bg-red-400 rounded-md p-1 mx-1'>No</button>
+                    </span></p>
+                  </div>
+              </div>
+                
             </div>
         {% endfor %}
     </div>
 
     {% comment %} add comment opiton {% endcomment %}
     
+    <div class="bg-white p-4 rounded-md shadow-md w-4/5 my-6">
+      <div class='flex'>
+          <img class='rounded w-50 h-40' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
+          <div class='pl-6'>
+            <h3 class='font-semibold text-2xl text-gray-700 py-2'>
+              Hello,
+              <span class='font-bold text-blue-500'>
 
+                 Swapno Mondol
+              </span>,
+              <br>
+              Write your comments for 
+              <span class='font-bold text-blue-700'>
+                
+                {{ object.title }}
+              </span>
+               </h3>
+            <form method="post" class="">
+              {% csrf_token %} 
+              <div>
+                  {{ comment_form|crispy }}
+              <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">Submit</button>
+            </form>
+          </div>
+      </div>
+        
+    </div>
 </div>
 
+
 {% comment %} add comment {% endcomment %}
-<form method="post" class="space-y-4 mx-12 px-12">
-  {% csrf_token %} <div>
-      {{ comment_form|crispy }}
-  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">Submit</button>
-</form>
+
 {% endblock   %}
