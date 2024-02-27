@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class RegistrationForm(UserCreationForm):
     balance = forms.IntegerField()
+
     class Meta:
         model = User
         fields = ['username','first_name','last_name','email','balance','password1','password2']
@@ -37,6 +38,11 @@ class RegistrationForm(UserCreationForm):
                     'focus:bg-white focus:border-gray-500'
                 )
             })
+
+
+
+
+
 
 class UwerLogin(LoginView):
     template_name = 'login.html'

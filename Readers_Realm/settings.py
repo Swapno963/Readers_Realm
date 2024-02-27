@@ -192,7 +192,7 @@ from datetime import timedelta
 
 # for session stroage
 AUTO_LOGOUT = {
-    'IDLE_TIME': timedelta(minutes=5),
+    'IDLE_TIME': timedelta(minutes=50),
     # 'IDLE_TIME': 10,
     'SESSION_TIME': timedelta(minutes=30),
 

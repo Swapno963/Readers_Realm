@@ -14,11 +14,11 @@
 </div> {% endcomment %}
 
 <div class='flex  justify-center  my-12'>
-  <div class='flex border-solid border-2 border-green-500 w-3/5  '>
+  <div class='flex justify-evenly  border-solid border-2 border-orange-200 w-4/5  bg-white rounded-xl'>
     <div class='border-solid border-2 border-sky-500 p-6 m-5'>
-      <img style='width:300px; height:300px' class=" mx-auto mb-4" src="{{ object.img.url }}" alt="{{ object.title }}">
+      <img style='width:390px; height:320px' class=" mx-auto mb-4" src="{{ object.img.url }}" alt="{{ object.title }}">
     </div>
-    <div class='pl-12 pt-12'>
+    <div class=' pt-12'>
       <a href="#" class="mb-4 text-3xl font-semibold text-gray-800 hover:text-blue-500  leading-10">
         <span class=' text-semibold text-gray-600 font-semibold'>Title  :</span> 
         <span class='text-green-400'>
@@ -42,25 +42,34 @@
        </p>
        <h3 class="text-2xl text-gray-600 font-semibold mb-4">We Have : {{ comments | length }} Comments</h3>
        <div class='flex'>
-        <button class='bg-green-600 hover:bg-green-800 text-xl font-bold text-white rounded-2xl p-2 border-solid border-2 border-red-200 mr-3'>Read Some Page</button>
-        <button  class='bg-blue-600 hover:bg-blue-800 text-xl font-bold text-white rounded-2xl p-2 border-solid border-2 border-red-200 mx-3'>Add To Cart</button>
+        <button class='bg-green-600 hover:bg-green-800 text-md font-bold text-white rounded-xl p-2 border-solid border-2 border-red-200 mr-3'>Read Some Page</button>
+        <button  class='bg-blue-600 hover:bg-blue-800 text-md font-bold text-white rounded-xl p-2 border-solid border-2 border-red-200 mx-3'>
+          <a href="{% url 'borrow_book' object.id %}">Borrow It</a>
+
+          </button>
        </div>
     </div>
   </div>
 </div>
 
-<div class="container mx-auto p-6 bg-blue-100 rounded-xl">
+<div class="container mx-auto p-6 bg-blue-100 rounded-xl mb-12">
     <h3 class="text-2xl font-semibold mb-4 text-gray-600">Users Comments : {{ comments | length }}</h3>
     <div class="space-y-4">
         {% for comment in comments %}
-            <div class="bg-white p-4 rounded-md shadow-md w-4/5">
+            <div class="bg-white p-4 rounded-md shadow-md ">
               <div class='flex'>
-                  <img class='rounded w-50 h-40' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
+                {% if request.user.is_authenticated %}
+                  <img class='rounded w-23 h-20' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
+                {% else %}
+                  <img class='rounded w-23 h-20' src="/posts/media/uploads/download_3.jpg" alt="User Image">
+                {% endif %}
                   <div class='pl-6'>
-                    <p class="text-xl font-bold text-gray-700 "><span>By :</span> {{ comment.name }} <span class='font-semibold'>, at : 24 Aug 2023</span></p>
+                    <p class="text-xl font-bold text-gray-700 "><span>By :</span> {{ comment.commentor }} <span class='font-semibold'>, at : {{comment.created_on}}</span></p>
                     {% comment %} <p class="text-gray-600">{{ comment.body }}</p> {% endcomment %}
-                    <p class='text-green-400 font-semibold py-3'>Verified Purchase</p>
-                    <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque delectus, magni voluptatum minus velit culpa assumenda accusantium, repellat nihil saepe quasi, blanditiis distinctio asperiores. Vero ratione quae quis pariatur vitae.</p>
+                    <p class='text-green-400 font-semibold pb-3 pt-1'>Verified Purchase</p>
+                    <p class="text-gray-600">{{comment.body}}
+
+                    </p>
                     <p class='font-semibold text-gray-700 py-4'>Was this helpfull to your ? <span>
                       <button class='font-semibold text-white bg-green-300 hover:bg-green-400 rounded-md p-1 mx-2'>Yes</button>
                       <button class='font-semibold text-white bg-red-300 hover:bg-red-400 rounded-md p-1 mx-1'>No</button>
@@ -74,18 +83,25 @@
 
     {% comment %} add comment opiton {% endcomment %}
     
-    <div class="bg-white p-4 rounded-md shadow-md w-4/5 my-6">
-      <div class='flex'>
-          <img class='rounded w-50 h-40' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
+    <div class="bg-white p-4 rounded-md shadow-md  my-6">
+      <div class='flex p-4'>
+        {% if request.user.is_authenticated %}
+          <img class='rounded w-23 h-20' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
+      {% else %}
+        <img class='rounded w-23 h-20' src="/posts/media/uploads/download_3.jpg" alt="User Image">
+      {% endif %}
+          
           <div class='pl-6'>
             <h3 class='font-semibold text-2xl text-gray-700 py-2'>
               Hello,
               <span class='font-bold text-blue-500'>
 
-                 Swapno Mondol
-              </span>,
+                 {{user}}
+              </span>
               <br>
-              Write your comments for 
+               </h3>
+               <h3 class='font-semibold text-xl text-gray-700 pb-2'>
+                Write your comments for 
               <span class='font-bold text-blue-700'>
                 
                 {{ object.title }}
@@ -95,7 +111,11 @@
               {% csrf_token %} 
               <div>
                   {{ comment_form|crispy }}
-              <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">Submit</button>
+                  {% if request.user.is_authenticated %}
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">Submit</button>
+                  {% else %}
+                  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">Login To comment</button>
+                  {% endif %}
             </form>
           </div>
       </div>

@@ -8,6 +8,7 @@ urlpatterns = [
    path('logout/', UserLogoutView.as_view(), name='logout'), 
    path('login/', UserLoginView.as_view(), name='login'), 
    path('deposit_money/', add_money, name='deposit_money'), 
+   
    path('Borrow_book/<int:id>/', BorrowBookView.as_view(), name='borrow_book'), 
    path('ReturnBook/<int:id>/', ReturnBook.as_view(), name='ReturnBook'), 
    path('Comment/<int:id>/', add_comment, name='add_comment'), 

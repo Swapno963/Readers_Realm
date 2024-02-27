@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block body %}
-<div class="container mx-auto p-5 mt-5">
-  <div class="bg-blue-900 text-white py-20 px-4">
+<div class="mb-5">
+  {% comment %}
+  <div class="bg-blue-900 text-white py-20">
     <div class="container mx-auto text-center">
       <h1 class="text-4xl font-bold mb-4">
         Welcome to Your Library Management System
@@ -15,53 +16,98 @@
       >
     </div>
   </div>
+  {% endcomment %}
+  <div
+    class="flex items-center justify-center h-screen bg-cover bg-center backdrop-opacity-50"
+    style="
+      background-image: url('https://kodeforest.net/html/books/store/images/banner-2.png');
+    "
+  >
+    <div class="z-10 text-center text-white ">
+      <h1 class="text-4xl font-bold mb-4">
+        Discover the World Through Your Lens
+      </h1>
+      <p class="text-lg">
+        Experience the beauty of nature with our <br />
+        premium sunglasses collection. Crafted for style and durability, our
+        sunglasses are <br />
+        your perfect companion for every adventure.
+      </p>
+    </div>
+  </div>
 
   <!-- Features Section -->
-  <div class="container mx-auto py-12 px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div style="height:800px" class="container mx-auto py-12 px-4 mt-12 flex justify-center items-center">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="p-6">
-          <h2 class="text-xl font-bold mb-2">Browse Books</h2>
+          <h2 class="text-xl font-bold mb-2">Complimentary Gift Wrapping</h2>
           <p class="text-gray-600">
-            Explore our collection of books and find your next read.
+            Elevate your gifting experience with our free gift wrapping service.
+            Each purchase is carefully encased in our signature blue box,
+            adorned with a ribbon of your choice.
           </p>
         </div>
       </div>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="p-6">
-          <h2 class="text-xl font-bold mb-2">Share Books</h2>
+          <h2 class="text-xl font-bold mb-2">Free Worldwide Shipping</h2>
           <p class="text-gray-600">
-            Share books your Favourite Book on Social Media
+            Enjoy complimentary shipping on all orders exceeding $1000. Wherever
+            you are, we deliver your purchase to your doorstep with extra
+            discounts on international orders.
           </p>
         </div>
       </div>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="p-6">
-          <h2 class="text-xl font-bold mb-2">Manage Account</h2>
+          <h2 class="text-xl font-bold mb-2">
+            Hassle-Free Returns & Exchanges
+          </h2>
           <p class="text-gray-600">
-            Create an account, manage your profile, and track your borrowing
-            history.
+            Shop with confidence knowing that returns and exchanges are
+            hassle-free within 5 days of purchase. Please note that lost or
+            damaged items are not eligible for return or exchange.
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <header class="text-center">
-    <h1 class="text-4xl font-bold text-blue-900">Book Universe</h1>
-    <p class="mt-2 text-gray-900">Explore a world of books</p>
-  </header>
-
-  <main class="mt-8 grid grid-cols gap-8">
-    <div class="bg-white p-6 rounded-lg shadow-md">
-      <h2 class="text-xxl font-bold text-gray-800 text-center">
-        All Book is For Learning
-      </h2>
-      <p class="text-xl text-gray-600 text-center">Made by : Swapno</p>
-      <p class="text-xl mt-2 text-gray-700 text-center">
-        The more you read the more you learn
-      </p>
+  <div class="container mx-auto py-12 mb-12 px-4 bg-gradient-to-br from-blue-300 to-blue-400 rounded-lg shadow-xl">
+    <h2 class="text-4xl text-center font-bold mb-12 pb-5 text-white">
+      BOOK STORE GIFT CARD
+    </h2>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class=" rounded-lg shadow-md overflow-hidden">
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-4 text-gray-600">ANY OCCASION</h2>
+          <p class="text-white">
+            The great philosopher Blaise Pascal believed that human misfortune was the result of other people’s inability “to sit quietly in one’s room”.
+          </p>
+        </div>
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-4 text-gray-600">SPECIAL OCCASION</h2>
+          <p class="text-white">
+            Here are many special occasions in the lives of our friends, family and colleagues, and each offers an opportunity to commemorate the day with a unique and personalised book.
+          </p>
+        </div>
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-4 text-gray-600">CARDS FOR KIDS</h2>
+          <p class="text-white">
+            The thrill of double war. The excitement of shouting "Gin!" Every kid knows at least a handful of card classics, and every grown up kid remembers the fun of playing them.
+          </p>
+        </div>
+      </div>
+      <div class="overflow-hidden">
+        <img class='rounded-lg shadow-md h-full'
+          src="https://kodeforest.net/html/books/store/images/banner-3.png"
+          alt=""
+        />
+      </div>
     </div>
-  </main>
+  </div>
+  
 </div>
 {% endblock %}

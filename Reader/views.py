@@ -37,6 +37,7 @@ class UserRegistrationView(FormView):
 
     def form_invalid(self, form):
         print("invalid : ",form.cleaned_data)
+        return super().form_valid(form)
 
 class UserLoginView(LoginView):
     template_name = 'user_login.html'

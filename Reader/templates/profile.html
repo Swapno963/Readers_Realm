@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block body %}
-<div class="max-w-2xl mx-auto my-12 py-12 px-8 bg-white rounded-md shadow-md">
-    <div class='mb-12 '>
+<div class="max-w-4xl mx-auto my-12 py-12 px-8 bg-white rounded-md shadow-md bg-blue-100">
+    <div class='mb-12 flex justify-around'>
         <button
         class="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
         >
@@ -25,44 +25,47 @@
     </a>
         </button>
     </div>
-    <h1 class="text-2xl font-bold mb-8 text-center">Hello, {{ user }}</h1>
-    <h2 class="text-3xl font-semibold mb-8 text-center">Your Balance: {{ user.balance }}</h2>
+    <h1 class="text-2xl font-bold mb-5 text-center">Hello, <span class='text-green-500 font-bold'>
+        {{ user }}
+    </span>
+</h1>
+    <h2 class="text-3xl font-semibold mb-8 text-center text-gray-700">Your Balance Is: $ <span class='font-bold text-red-300'>{{ user.balance }}</span> </h2>
 
     {% if borrow_history %}
-        <h2 class="text-2xl font-semibold mb-8 text-center">Borrow History ({{ borrow_history | length }})</h2>
+        <h2 class="text-2xl font-semibold mb-8 text-center text-gray-700">Borrow History <span class='bg-yellow-300 rounded-3xl p-1'> ({{ borrow_history | length }})</span></h2>
 
-        <div class="overflow-x-auto">
-            <table class="table-auto w-full">
+        <div class="">
+            <table class="table w-full">
                 <thead>
-                    <tr class="bg-gray-200">
+                    <tr class="bg-blue-500 text-white px-6">
                         <th class="px-4 py-2">User Name</th>
                         <th class="px-4 py-2">Purchase Date</th>
                         <th class="px-4 py-2">Book Title</th>
                         <th class="px-4 py-2">Is Borrowed</th>
                         <th class="px-4 py-2">Price</th>
                         <th class="px-4 py-2">Actions</th>
-                        <th class="px-4 py-2">Comment</th>
+                        <th class="px-4 py-2">Comments </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for entry in borrow_history %}
-                        <tr>
-                            <td class="px-4 py-2">{{ entry.user }}</td>
-                            <td class="px-4 py-2">{{ entry.purchase_date }}</td>
-                            <td class="px-4 py-2">{{ entry.book.title }}</td>
-                            <td class="px-4 py-2">{{ entry.IsBorrowed }}</td>
-                            <td class="px-4 py-2">{{ entry.book.borrow_price }}</td>
+                        <tr class='text-gray-700'>
+                            <td class="px-4 py-2 font-semibold text-md">{{ entry.user }}</td>
+                            <td class="px-4 py-2 font-semibold text-md">{{ entry.purchase_date }}</td>
+                            <td class="px-4 py-2 font-semibold text-md">{{ entry.book.title }}</td>
+                            <td class="px-4 py-2 font-semibold text-md">{{ entry.IsBorrowed }}</td>
+                            <td class="px-4 py-2 font-semibold text-md">{{ entry.book.borrow_price }}</td>
                             {%if entry.IsBorrowed%}
-                            <td class="px-4 py-2">
-                                <a href="{% url 'ReturnBook' entry.id %}" class="text-blue-500 hover:underline">Return Book</a>
-                            </td>
-
+                                <td class="px-4 py-2">
+                                    <a href="{% url 'ReturnBook' entry.id %}" class="text-blue-500 hover:underline font-semibold">Return Book</a>
+                                </td>
+                            {% else  %}
+                                <td class="px-4 py-1 bg-red-100  rounded-xl">
+                                    <a href="#" class="text-blue-500 hover:underline font-semibold">Already Returned</a>
+                                </td>
                             {% endif %}
                             <td class="px-4 py-2">
-                                <a href="#" class="text-blue-500 hover:underline">Already Returned</a>
-                            </td>
-                            <td class="px-4 py-2">
-                                <a href="{% url 'book_detail' entry.book.id %}" class="text-blue-500 hover:underline">Add Comment</a>
+                                <a href="{% url 'book_detail' entry.book.id %}" class="text-blue-500 hover:underline font-semibold">Add Comment</a>
                             </td>
                         </tr>
                     {% endfor %}

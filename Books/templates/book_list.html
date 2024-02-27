@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% load static %} {% block body %} {% if page_obj %}
 <div class="container mx-auto px-5 py-12">
-  <h2 class="text-5xl font-bold mb-8 text-center text-blue-300">Categories</h2>
+  <h2 class="text-5xl font-bold mb-8 text-center text-blue-800">All Categories</h2>
   <div class="flex flex-wrap justify-center gap-4">
     <a
       href="{% url 'category_wise_book' None %}"
@@ -37,7 +37,13 @@
 
        </span> 
       </a>
-      <p class="text-gray-600 mb-1 text-semibold text-xl font-semibold">Author : {{ book.author  }}</p>
+      <p class="text-gray-600 mb-1 text-semibold text-xl font-semibold">Author :
+         
+        {% if book.author %}
+        {{ book.author }}
+      {% else %}
+        Unknown
+      {% endif %}      </p>
       <p class="text-gray-600 mb-2 text-semibold text-xl font-semibold">Price :  
         <span class='text-red-300 font-bold'>
 
@@ -45,8 +51,8 @@
         </span>
 
       </p>
-      <p class="text-gray-600 mb-4 text-semibold text-xl font-semibold">Category : 
-        <span class='bg-yellow-200 rounded-2xl py-1 px-1'>
+      <p class="text-gray-600 mb-4 text-bold text-xl font-semibold">Category : 
+        <span class='bg-green-200 rounded-xl  px-2'>
 
           {{ book.category }}
         </span>

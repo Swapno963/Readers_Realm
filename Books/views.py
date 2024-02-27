@@ -34,7 +34,7 @@ def show_all_books(request, category_slug=None):
     page = request.GET.get('page', 1)
 
     # Create the Paginator object with desired number of items per page
-    paginator = Paginator(book_list, 2)  # Adjust `10` as needed
+    paginator = Paginator(book_list, 3)  # Adjust `10` as needed
 
     # Try to get the requested page object, handle invalid page numbers
     try:
@@ -79,11 +79,12 @@ class ShowDetailBook(DetailView):
     
 
     def post(self,request, *args, **kwargs):
-        print('book post: ',request)
+        # print('book post: ',request.user) #getting usesr
         comment_form = CommentForm(data=self.request.POST)
         book = self.get_object()
         if comment_form.is_valid():
-            new_comment = comment_form.save(commit=True)
+            new_comment = comment_form.save(commit=False)
+            new_comment.commentor = request.user
             new_comment.post_book = book
             new_comment.books_comment = book
             new_comment.save()
