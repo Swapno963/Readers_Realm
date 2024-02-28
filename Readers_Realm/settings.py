@@ -88,12 +88,12 @@ WSGI_APPLICATION = 'Readers_Realm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # for postsql
 DATABASES = {
@@ -112,13 +112,13 @@ DATABASES = {
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         # Feel free to alter this value to suit your needs.
-#         default='postgres://reader_realm_user:gH8IYsgJbGNo4eY2llO82lT0hJaZ3hkm@dpg-cmbu25ed3nmc73emqsjg-a.oregon-postgres.render.com/reader_realm',
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://reader_realm_user:gH8IYsgJbGNo4eY2llO82lT0hJaZ3hkm@dpg-cmbu25ed3nmc73emqsjg-a.oregon-postgres.render.com/reader_realm',
        
-#     )
-# }
+    )
+}
 
 
 
