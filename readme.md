@@ -50,3 +50,23 @@ Here are two options to get started with this project:
    ```bash
    py manage.py runserver
 
+
+
+
+## Live Site
+
+You can access the live site [here](https://readers-realm.onrender.com/).
+
+## User Login
+
+To log in as a user, please use the following credentials:
+
+- **name:** sam
+- **Password:** 12345678n
+
+## Accessing the Admin Panel
+
+To access the admin panel, you'll need administrative privileges. Please use the following credentials:
+
+- **Username:** admin
+- **Password:** 123
