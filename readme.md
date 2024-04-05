@@ -55,7 +55,7 @@ Here are two options to get started with this project:
 
 ## Live Site
 
-You can access the live site [here](https://readers-realm.onrender.com/).
+You can access the live site [here](https://readers-realm.onrender.com/)
 
 ## User Login
 
