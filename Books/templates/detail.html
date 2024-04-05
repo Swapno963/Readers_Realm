@@ -58,11 +58,12 @@
         {% for comment in comments %}
             <div class="bg-white p-4 rounded-md shadow-md ">
               <div class='flex'>
-                {% if request.user.is_authenticated %}
+                {% comment %} {% if request.user.is_authenticated %}
+
                   <img class='rounded w-23 h-20' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
                 {% else %}
                   <img class='rounded w-23 h-20' src="/posts/media/uploads/download_3.jpg" alt="User Image">
-                {% endif %}
+                {% endif %} {% endcomment %}
                   <div class='pl-6'>
                     <p class="text-xl font-bold text-gray-700 "><span>By :</span> {{ comment.commentor }} <span class='font-semibold'>, at : {{comment.created_on}}</span></p>
                     {% comment %} <p class="text-gray-600">{{ comment.body }}</p> {% endcomment %}
@@ -85,11 +86,12 @@
     
     <div class="bg-white p-4 rounded-md shadow-md  my-6">
       <div class='flex p-4'>
-        {% if request.user.is_authenticated %}
+        {% comment %} {% if request.user.is_authenticated %}
+
           <img class='rounded w-23 h-20' src="https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="">
       {% else %}
         <img class='rounded w-23 h-20' src="/posts/media/uploads/download_3.jpg" alt="User Image">
-      {% endif %}
+      {% endif %} {% endcomment %}
           
           <div class='pl-6'>
             <h3 class='font-semibold text-2xl text-gray-700 py-2'>

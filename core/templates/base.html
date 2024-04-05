@@ -17,11 +17,9 @@
   <body class="bg-indigo-200">
     {% for message in messages %}
     <div class="message {{ message.tags }}">{{ message }}</div>
-    {% endfor %} {{ redirect_to_login_immediately }} 
-    {% include 'navbar.html' %}
-    <div>
-
-      {% block body %} {% endblock %} 
+    {% endfor %} {{ redirect_to_login_immediately }} {% include 'navbar.html' %}
+    <div class="min-h-screen">
+      <div style="padding: 150px 0px">{% block body %} {% endblock %}</div>
     </div>
     {% include 'footer.html' %}
   </body>

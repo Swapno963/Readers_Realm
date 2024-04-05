@@ -1,113 +1,273 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %} {% load static %} {% block body %}
 <div class="mb-5">
-  {% comment %}
-  <div class="bg-blue-900 text-white py-20">
-    <div class="container mx-auto text-center">
-      <h1 class="text-4xl font-bold mb-4">
-        Welcome to Your Library Management System
-      </h1>
-      <p class="text-lg mb-8">
-        Manage your books, borrow and return, all in one place.
-      </p>
-      <a
-        href="#"
-        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-        >Get Started</a
-      >
-    </div>
-  </div>
-  {% endcomment %}
   <div
-    class="flex items-center justify-center h-screen bg-cover bg-center backdrop-opacity-50"
+    class="flex items-center justify-center h-screen bg-cover bg-center relative"
     style="
       background-image: url('https://kodeforest.net/html/books/store/images/banner-2.png');
     "
   >
-    <div class="z-10 text-center text-white ">
-      <h1 class="text-4xl font-bold mb-4">
-        Discover the World Through Your Lens
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="z-10 text-center text-white">
+      <h1 style="font-size: 67px" class="font-bold mb-8">
+        Discover the World Through <br />
+        Your Lens
       </h1>
-      <p class="text-lg">
-        Experience the beauty of nature with our <br />
-        premium sunglasses collection. Crafted for style and durability, our
-        sunglasses are <br />
+      <p class="text-2xl">
+        Experience the beauty of nature with our premium sunglasses
+        collection.<br />
+        Crafted for style and durability, our sunglasses are <br />
         your perfect companion for every adventure.
       </p>
+      <button class="mt-12 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500">
+        <a
+          href="{% url 'all_books' %}"
+          class="mr-2 text-white font-bold hover:text-red-200 text-xl"
+        >
+          Explore Now</a
+        >
+      </button>
     </div>
   </div>
 
-  <!-- Features Section -->
-  <div style="height:800px" class="container mx-auto py-12 px-4 mt-12 flex justify-center items-center">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <div class="p-6">
-          <h2 class="text-xl font-bold mb-2">Complimentary Gift Wrapping</h2>
-          <p class="text-gray-600">
-            Elevate your gifting experience with our free gift wrapping service.
-            Each purchase is carefully encased in our signature blue box,
-            adorned with a ribbon of your choice.
+  <!-- Book Introduction -->
+  <div
+    style="height: 800px"
+    class="container mx-auto py-12 px-4 mt-12 flex-col justify-center items-center"
+  >
+    <div class="text-center pb-8 px-12">
+      <h2 class="font-bold" style="font-size: 32px; color: #333333">
+        Book Introduction : Where She Went
+      </h2>
+      <p class="text-2xl mb-4">Welcome to the Most Popular Library Today</p>
+      <hr class="text-center" />
+    </div>
+    <div class="grid grid-cols-2 gap-4 pt-12">
+      <div><img src="{% static "books.png" %}" alt="" /></div>
+      <div class="px-10">
+        <div class="py-8">
+          <h2 class="text-base text-gray-700">100% CLIENT’S SATISFACTION</h2>
+          <p class="pt-4">
+            We provide 100% customer professional support and clean code to
+            satisfy our clients
           </p>
         </div>
-      </div>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <div class="p-6">
-          <h2 class="text-xl font-bold mb-2">Free Worldwide Shipping</h2>
-          <p class="text-gray-600">
-            Enjoy complimentary shipping on all orders exceeding $1000. Wherever
-            you are, we deliver your purchase to your doorstep with extra
-            discounts on international orders.
+        <div class="py-8">
+          <h2 class="text-base text-gray-700">USER FRIENDLY DESIGN QUALITY</h2>
+          <p class="pt-4">
+            The desgin of the book library is very user friendly easy to use and
+            customize the design and site.
           </p>
         </div>
-      </div>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <div class="p-6">
-          <h2 class="text-xl font-bold mb-2">
-            Hassle-Free Returns & Exchanges
+        <div class="py-8">
+          <h2 class="text-base text-gray-700">
+            GREAT IMPRESSION ON WEBSITE VISITOR
           </h2>
-          <p class="text-gray-600">
-            Shop with confidence knowing that returns and exchanges are
-            hassle-free within 5 days of purchase. Please note that lost or
-            damaged items are not eligible for return or exchange.
+          <p class="pt-4">
+            The exciting look of the book library gives a wonder full impression
+            to the visitors and provide the traffic.
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container mx-auto py-12 mb-12 px-4 bg-gradient-to-br from-blue-300 to-blue-400 rounded-lg shadow-xl">
-    <h2 class="text-4xl text-center font-bold mb-12 pb-5 text-white">
-      BOOK STORE GIFT CARD
-    </h2>
-  
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class=" rounded-lg shadow-md overflow-hidden">
-        <div class="p-6">
-          <h2 class="text-xl font-bold mb-4 text-gray-600">ANY OCCASION</h2>
-          <p class="text-white">
-            The great philosopher Blaise Pascal believed that human misfortune was the result of other people’s inability “to sit quietly in one’s room”.
+  {% comment %} Camplaingn today {% endcomment %}
+  <div class="bg-indigo-300 w-4/5 mx-auto rounded-xl pb-12">
+    <div class="text-center">
+      <h2 class="font-bold pb-4 pt-12" style="font-size: 32px; color: #333333">
+        Start a campaign today
+      </h2>
+      <p class="text-2xl mb-4">
+        Campoal has a variety of features that make it the best place to start a
+        petition.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-4 pt-12 pl-12 ml-12">
+      <div class="px-10">
+        <div class="">
+          <h2 class="font-bold pb-2" style="font-size: 24px; color: #333333">
+            Manage your campaigns
+          </h2>
+          <p class="pt-2 text-md">
+            Track how many people signed the petition by week, month, year.
           </p>
         </div>
-        <div class="p-6">
-          <h2 class="text-xl font-bold mb-4 text-gray-600">SPECIAL OCCASION</h2>
-          <p class="text-white">
-            Here are many special occasions in the lives of our friends, family and colleagues, and each offers an opportunity to commemorate the day with a unique and personalised book.
+        <div class="py-8">
+          <h2 class="font-bold pb-2" style="font-size: 24px; color: #333333">
+            Collecting donation
+          </h2>
+          <p class="pt-2">
+            Campaign owners can set up to receive donations from supporters.
           </p>
         </div>
-        <div class="p-6">
-          <h2 class="text-xl font-bold mb-4 text-gray-600">CARDS FOR KIDS</h2>
-          <p class="text-white">
-            The thrill of double war. The excitement of shouting "Gin!" Every kid knows at least a handful of card classics, and every grown up kid remembers the fun of playing them.
+        <div class="py-4">
+          <h2 class="font-bold pb-2" style="font-size: 24px; color: #333333">
+            Export Signature
+          </h2>
+          <p class="pt-2">
+            Download signatures of supporters and submit to decision makers.
           </p>
         </div>
       </div>
-      <div class="overflow-hidden">
-        <img class='rounded-lg shadow-md h-full'
-          src="https://kodeforest.net/html/books/store/images/banner-3.png"
-          alt=""
-        />
+      <div><img src="{% static "impact-homepage-start.svg" %}" alt="" /></div>
+    </div>
+  </div>
+
+  {% comment %} Most trusted petition {% endcomment %}
+  <div class="py-12 my-12 bg-gray-500 h-full">
+    <div class="text-center pb-12 px-12 mx-12">
+      <h2 style="font-size: 60px" class="font-bold text-gray-700">
+        The most trusted petition<br> platform
+      </h2>
+      <p style="font-size: 32px" class="pb-12">
+        Here are a few reasons why you <br> should choose Campoal
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-4 px-12 mx-auto">
+      <div class="bg-gray-300 p-8 rounded-xl text-center">
+        <h2 style="font-size: 32px">Influence decision makers</h2>
+        <p style="font-size: 18px">
+          We help people reach the business and government leaders whose
+          decisions impact their lives power deserve.
+        </p>
+      </div>
+      <div class="bg-gray-300 p-8 rounded-xl text-center">
+        <h2 style="font-size: 32px">Influence decision makers</h2>
+        <p style="font-size: 18px">
+          We help people reach the business and government leaders whose
+          decisions impact their lives power deserve.
+        </p>
+      </div>
+      <div class="bg-gray-300 p-8 rounded-xl text-center">
+        <h2 style="font-size: 32px">Influence decision makers</h2>
+        <p style="font-size: 18px">
+          We help people reach the business and government leaders whose
+          decisions impact their lives power deserve.
+        </p>
       </div>
     </div>
   </div>
-  
+
+  <div
+    class="container mx-auto py-12 mb-12 px-4 bg-gradient-to-br from-blue-300 to-blue-400 rounded-lg shadow-xl"
+  >
+    <div class="grid grid-cols-2 gap-4 px-12">
+      <div class="flex justify-center items-center">
+        <div>
+          <h2 class="font-bold text-4xl py-6">Start one today!</h2>
+          <p class="pr-12 py-2 leading-8">
+            People everywhere are empowered to start campaigns, mobilize
+            supporters, and work with Decision Makers to drive solutions.
+          </p>
+          <button class="mt-12 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500">
+            <a
+              href="{% url 'all_books' %}"
+              class="mr-2 text-white font-bold hover:text-red-200 text-xl"
+            >
+              Let's Start</a
+            >
+          </button>
+        </div>
+      </div>
+      <div>
+        <div class="" style="margin-bottom: -48px">
+          <img src="{% static "impact-cta-protest.svg" %}" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+{% comment %} welcome to lobrary {% endcomment %}
+<div class="py-12 my-12 bg-green-100 ">
+  <div class="text-center pb-8 px-12 ">
+    <h2 class="font-bold" style="font-size: 32px; color: #333333">
+      Welcome To The Library
+    </h2>
+    <p class="text-2xl mb-4">Welcome to the Most Popular Library Today</p>
+    <hr class="text-center" />
+  </div>
+  <div class="grid grid-cols-4 gap-8 pt-12 px-12 w-3/5 mx-auto">
+    <div class="py-8">
+      <h2 class="text-base text-gray-800 font-bold">EBOOKS</h2>
+      <p class="py-4 leading-12 pr-4">
+        An electronic version of a printed book that can be read on a computer.
+      </p>
+      <button class="bg-gradient-to-br from-green-400 to-blue-500 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-gradient-to-br hover:from-blue-500 hover:to-green-400 mb-4">
+        Know More
+        </button>      <hr />
+    </div>
+    <div class="py-8">
+      <h2 class="text-base text-gray-800 font-bold">AUDIOBOOKS</h2>
+      <p class="py-4 leading-12 pr-4">
+        An audiocassette or CD recording of a reading of a book, typically a
+        novel.
+      </p>
+      <button class="bg-gradient-to-br from-green-400 to-blue-500 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-gradient-to-br hover:from-blue-500 hover:to-green-400 mb-4">
+        Know More
+        </button>      <hr />
+    </div>
+    <div class="py-8">
+      <h2 class="text-base text-gray-800 font-bold">MAGAZINE</h2>
+      <p class="py-4 leading-12 pr-4">
+        A periodical publication containing articles and illustrations
+        information.
+      </p>
+      <button class="bg-gradient-to-br from-green-400 to-blue-500 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-gradient-to-br hover:from-blue-500 hover:to-green-400 mb-4">
+      Know More
+      </button>      <hr />
+    </div>
+    <div class="py-8">
+      <h2 class="text-base text-gray-800 font-bold">TEANS & KIDS</h2>
+      <p class="py-4 leading-12 pr-4">
+        The years of a person's age from 13 to 19 and are the kids and teens.
+      </p>
+      <button class="bg-gradient-to-br from-green-400 to-blue-500 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-gradient-to-br hover:from-blue-500 hover:to-green-400 mb-4">
+        Know More
+        </button>      <hr />
+    </div>
+  </div>
+</div>
+
+{% comment %} New collecions {% endcomment %}
+<div class="h-screen bg-gray-200 pb-12 m-12 rounded-xl">
+  <div style="height: 262px" class="text-center pb-12 px-12">
+    <h2 class="font-bold pt-12" style="font-size: 32px; color: #333333">
+      Book Introduction : Where She Went
+    </h2>
+    <p class="text-2xl mb-4">Welcome to the Most Popular Library Today</p>
+    <hr class="text-center" />
+  </div>
+  <div class="w-4/5 mx-auto bg-gray-400 p-4 rounded-xl">
+    <div class="grid grid-cols-2 gap-4 pt-12">
+      <div
+        style="height: 420px"
+        class="p-4 flex border-solid border-2 border-gray-500 p-4"
+      >
+        <img class='w-3/5' src="{% static "books.png" %}" alt="" />
+        <div>
+          <h2 class="text-gray-700 font-bold text-4xl">This is title</h2>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore
+            illo nesciunt corporis dignissimos sed veniam sapiente iure totam
+            soluta expedita ipsa,
+          </p>
+          <p>learn more</p>
+        </div>
+      </div>
+      <div class="px-10">
+        <div class="grid grid-cols-3 gap-4 pt-12">
+          <img class='w-full border-solid border-2 border-sky-500 p-4' src="{%static "books.png" %}" alt="" /> 
+<img class='w-full border-solid
+          border-2 border-sky-500 p-4' src="{% static "books.png" %}" alt="" />
+          <img class='w-full border-solid border-2 border-sky-500 p-4' src="{%static "books.png" %}" alt="" /> <img class='w-full border-solid
+          border-2 border-sky-500 p-4' src="{% static "books.png" %}" alt="" />
+          <img class='w-full border-solid border-2 border-sky-500 p-4' src="{%static "books.png" %}" alt="" /> <img class='w-full border-solid
+          border-2 border-sky-500 p-4' src="{% static "books.png" %}" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

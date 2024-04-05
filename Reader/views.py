@@ -20,6 +20,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.models import User
 
 
 
@@ -64,14 +65,20 @@ def add_money(request):
 
     if request.method == 'POST' and form.is_valid():
         amount = form.cleaned_data['amount']
+        userWithEmail = User.objects.filter(username=request.user).first()
+
         user_account = Reader.objects.get(user=request.user)
-        print(amount, user_account.email)
+        print(amount, userWithEmail.email)
 
 
 
         # sending email
-        message =f'Deposit done, amount {amount}'
-        send_email = EmailMultiAlternatives('Deposit','',to=[user_account.email])
+        # message =f'Deposit done, amount {amount}'
+        message = render_to_string("Deposit_mail.html", {
+            'user' : userWithEmail,
+            'amount' : amount,
+        })
+        send_email = EmailMultiAlternatives('Deposit','',to=[userWithEmail.email])
         send_email.attach_alternative(message, 'text/html')
         send_email.send()
         user_account.balance += amount

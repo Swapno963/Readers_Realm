@@ -1,16 +1,71 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposit</title>
+    <title>Deposit Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 16px;
+        }
+        strong {
+            color: #000;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .contact-info {
+            margin-top: 30px;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        .contact-info p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h2>Hello, {{user.first_name}}</h2>
-        <p>You have successfully Receive <strong>{{amount}}</strong></p>
-        <p>Thank you for useing our service</p>
+        <h2>Hello, {{user.first_name}}!</h2>
+        <p>We are delighted to inform you that a deposit of <strong>${{amount}}</strong> has been successfully credited to your account.</p>
+        <p>Your trust in our service is greatly appreciated, and we assure you of our commitment to delivering excellence in every interaction.</p>
+        <p>If you have any questions or require further assistance, please feel free to reach out to our dedicated support team. We're here to help!</p>
+        <div class="footer">
+            <p>Best regards,<br>
+            Readers Realm</p>
+            <div class="contact-info">
+                <p>Contact us:</p>
+                <p>Email: swapno963@gmail.com</p>
+                <p>Phone: 01709112230</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

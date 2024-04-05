@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from Books.models import Books
+
 # Create your models here.
 class Reader(models.Model):
     user = models.OneToOneField(User, related_name='reader', on_delete=models.CASCADE)

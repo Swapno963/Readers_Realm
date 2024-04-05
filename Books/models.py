@@ -3,7 +3,7 @@ from Category.models import Category
 # Create your models here.'
 from django.contrib.auth.models import User
 class Books(models.Model):
-    author = models.OneToOneField(User, related_name='author', on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(User, related_name='author', on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=100)
     description = models.TextField()
     img = models.ImageField(upload_to='posts/media/uploads/', blank = True, null = True)    
